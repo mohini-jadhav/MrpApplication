@@ -36,7 +36,13 @@ class eventclass_employee_header  extends eventsBase
 	// Before record added
 	function BeforeAdd(&$values, &$message, $inline, &$pageObject) {
 	
+		global $conn;
 		//How to write names to the database in proper case
+		$arr = explode(" ",$values["EmployeeID"]);
+		for ($i=0; $i < count($arr); $i++)
+			$arr[$i] = ucfirst($arr[$i]);
+		$values["EmployeeID"]=implode(" ",$arr);
+			
 		$arr = explode(" ",$values["FirstName"]);
 		for ($i=0; $i < count($arr); $i++)
 		$arr[$i] = ucfirst($arr[$i]);
@@ -45,7 +51,20 @@ class eventclass_employee_header  extends eventsBase
 		$arr = explode(" ",$values["LastName"]);
 		for ($i=0; $i < count($arr); $i++)
 		$arr[$i] = ucfirst($arr[$i]);
-		$values["LastName"]=implode(" ",$arr);	
+		$values["LastName"]=implode(" ",$arr);
+		
+		$strFullName = $values["FirstName"] . ' ' . $values["LastName"];
+		
+		$SQL = "Select SupervisorID From tbl_director where FullName = '" . $values['SupervisorName'] . "'";
+		$rs = db_query($SQL, $conn);
+		while ($data = db_fetch_array($rs))
+		$values["SupervisorID"] = $data["SupervisorID"];
+
+		if( 'Yes' == $values['SupervisorTitle'] ) {
+			$strSQL = " INSERT INTO tbl_director( SupervisorID, FirstName, LastName, FullName ) Values ( '" . $values["EmployeeID"] . "', '" . $values["FirstName"] . "', '" . $values["LastName"] . "', '" . $strFullName . "' )";
+			db_exec( $strSQL, $conn );
+		}
+		
 		$values ["created_date"] = now ();
 		$values ["created_by"] = $_SESSION ["UserID"];
 		$values ["updated_date"] = now ();
@@ -59,6 +78,18 @@ class eventclass_employee_header  extends eventsBase
 	
 	// Before record updated
 	function BeforeEdit(&$values, $where, &$oldvalues, &$keys, &$message, $inline, &$pageObject) {
+		
+		global $conn;
+		$SQL = "Select SupervisorID From tbl_director where FullName = '" . $values['SupervisorName'] . "'";
+		$rs = db_query($SQL, $conn);
+		while ($data = db_fetch_array($rs))
+		$values["SupervisorID"] = $data["SupervisorID"];
+		
+		/* if( 'Yes' == $values['SupervisorTitle'] ) {
+			$strSQL = " INSERT INTO tbl_director( SupervisorID, FirstName, LastName, FullName ) Values ( '" . $values["EmployeeID"] . "', '" . $values["FirstName"] . "', '" . $values["LastName"] . "', '" . $strFullName . "' )";
+			db_exec( $strSQL, $conn );
+		} */
+
 		$values ["updated_date"] = now ();
 		$values ["updated_by"] = $_SESSION ["UserID"];
 	
@@ -104,7 +135,14 @@ class eventclass_employee_header  extends eventsBase
 		
 		if( !IsAdmin() && '5' == $groupID) {
 			$strSQL = "select DISTINCT SupervisorName from employee_header order by SupervisorName";
-		} elseif( !IsAdmin() && ( '6' == $groupID || '7' == $groupID ) ) {
+		} elseif( !IsAdmin() && '6' == $groupID ) {
+			$sql = "SELECT `EmployeeID` from employee_header where concat(`FirstName`, ' ', `LastName`) = '" . $userName . "'";
+			$rs = db_query($sql, $conn);
+			while( $data = db_fetch_array( $rs ) )
+				$EmployeeID = $data["EmployeeID"];
+
+			$strSQL = "select concat(`FirstName`, ' ', `LastName`) AS SupervisorName from employee_header where ( SupervisorID = '" . $EmployeeID . "' OR EmployeeID = '" . $EmployeeID . "' ) AND SupervisorTitle = 'Yes' order by SupervisorName";
+		} elseif( !IsAdmin() && '7' == $groupID ) { 
 			$strSQL = "select DISTINCT SupervisorName from employee_header where concat(`FirstName`, ' ', `LastName`) = '" . $userName . "' OR SupervisorName = '" . $userName . "' order by SupervisorName";
 		} elseif( !IsAdmin() && '1' == $groupID ) {
 			$strSQL = "select DISTINCT SupervisorName from employee_header where concat(`FirstName`, ' ', `LastName`) = '" . $userName . "' order by SupervisorName";

@@ -2852,13 +2852,25 @@ function createSqlQuery_employee_header() {
 		$obj = new SQLNonParsed ( array (
 				"m_sql" => ""
 		) );
-	} elseif( !IsAdmin() && ( '6' == $groupID || '7' == $groupID ) ) {
+	} elseif( !IsAdmin() && '6' == $groupID ) {
+		
+		global $conn;
+		$sql = "SELECT `EmployeeID` from employee_header where concat(`FirstName`, ' ', `LastName`) = '" . $userName . "'";
+		$rs = db_query($sql, $conn);
+		while( $data = db_fetch_array( $rs ) )
+		$EmployeeID = $data["EmployeeID"];
+		$proto2 ["m_sql"] = " employee_header.SupervisorID IN ( SELECT EmployeeID from employee_header WHERE SupervisorID = '" . $EmployeeID . "' || EmployeeID = '" . $EmployeeID . "' )";
+		$proto2 ["m_uniontype"] = "SQLL_UNKNOWN";
+		$obj = new SQLNonParsed ( array (
+				"m_sql" => "employee_header.SupervisorID IN ( SELECT EmployeeID from employee_header WHERE SupervisorID = '" . $EmployeeID . "' || EmployeeID = '" . $EmployeeID . "' )"
+		) );
+	} elseif( !IsAdmin() && '7' == $groupID ) {
 		$proto2 ["m_sql"] = "concat(employee_header.`FirstName`, ' ', employee_header.`LastName`) = '" . $userName ."' OR employee_header.SupervisorName = '" . $userName . "'";
 		$proto2 ["m_uniontype"] = "SQLL_OR";
 		$obj = new SQLNonParsed ( array (
-				"m_sql" => "concat(employee_header.`FirstName`, ' ', employee_header.`LastName`) = '" . $userName ."' OR employee_header.SupervisorName = '" . $userName . "'"
+		 	"m_sql" => "concat(employee_header.`FirstName`, ' ', employee_header.`LastName`) = '" . $userName ."' OR employee_header.SupervisorName = '" . $userName . "'"
 		) );
-	} elseif( !IsAdmin() && '1' == $groupID ) {
+	}elseif( !IsAdmin() && '1' == $groupID ) {
 		$proto2 ["m_sql"] = "concat(employee_header.`FirstName`, ' ', employee_header.`LastName`) = '" . $userName ."'";
 		$proto2 ["m_uniontype"] = "SQLL_AND";
 		$obj = new SQLNonParsed ( array (
