@@ -4594,6 +4594,7 @@ $masterTablesData ["customer_header"] = array ();
 
 require_once (getabspath ( "classes/sql.php" ));
 function createSqlQuery_customer_header() {
+	global $conn;
 	if( false == is_null( $_SESSION['UserName'] ) ) {
 		$userName = $_SESSION['UserName'];
 	}
@@ -4612,14 +4613,23 @@ function createSqlQuery_customer_header() {
 	$proto2 ["m_strTail"] = "";
 	$proto2 ["cipherer"] = null;
 	$proto3 = array ();
-	if( !IsAdmin() && ( '5' == $groupID || '7' == $groupID )) {
+	if( !IsAdmin() && '5' == $groupID ) {
 		$proto3 ["m_sql"] = "customer_header.Engagement_status <> 'Terminated'";
 		$proto3 ["m_uniontype"] = "SQLL_AND";
 		$obj = new SQLNonParsed ( array (
 				"m_sql" => "customer_header.Engagement_status <> 'Terminated'"
 		) );
 	} elseif( !IsAdmin() && '6' == $groupID  ) {
-		global $conn;
+		$strSQL = "SELECT DISTINCT td.SupervisorID, td.FullName FROM customer_header ch JOIN tbl_director td ON( ch.Supervisor = td.SupervisorID ) WHERE td.FullName = '" . $userName . "'";
+		$rs = db_query($strSQL,$conn);
+		while ($data = db_fetch_array($rs))
+		$supervisorID = $data['SupervisorID'];
+		$proto3 ["m_sql"] = "customer_header.Engagement_status <> 'Terminated' AND customer_header.Supervisor = '" . $supervisorID ."' OR customer_header.Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' ) " ;
+		$proto3 ["m_uniontype"] = "SQLL_AND";
+		$obj = new SQLNonParsed ( array (
+				"m_sql" => "customer_header.Engagement_status <> 'Terminated' AND customer_header.Supervisor = '" . $supervisorID . "' OR customer_header.Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' )"
+		) );
+	} elseif( !IsAdmin() && '7' == $groupID  ) {
 		$strSQL = "SELECT DISTINCT td.SupervisorID, td.FullName FROM customer_header ch JOIN tbl_director td ON( ch.Supervisor = td.SupervisorID ) WHERE td.FullName = '" . $userName . "'";
 		$rs = db_query($strSQL,$conn);
 		while ($data = db_fetch_array($rs))
@@ -5259,7 +5269,7 @@ function createSqlQuery_customer_header() {
 		$obj = new SQLOrderByItem ( $proto84 );
 	} elseif( !IsAdmin() && '1' == $groupID ) {
 		$proto84 = array ();
-		$proto84 ["m_link"] = "SQLL_LEFTJOIN";
+		$proto84 ["m_link"] = "SQLL_INNERJOIN";
 		$proto85 = array ();
 		$proto85 ["m_strName"] = "customerallocation";
 		$proto85 ["m_srcTableName"] = "customer_header";
@@ -5290,7 +5300,7 @@ function createSqlQuery_customer_header() {
 		$obj = new SQLTable ( $proto85 );
 		
 		$proto84 ["m_table"] = $obj;
-		$proto84 ["m_sql"] = "LEFT JOIN customerallocation ON customer_header.OracIeID = customerallocation.OracleID";
+		$proto84 ["m_sql"] = "INNER JOIN customerallocation ON customer_header.OracIeID = customerallocation.OracleID";
 		$proto84 ["m_alias"] = "";
 		$proto84 ["m_srcTableName"] = "customer_header";
 		$proto86 = array ();

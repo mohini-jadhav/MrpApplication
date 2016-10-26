@@ -127,7 +127,9 @@ class eventclass_customerallocation extends eventsBase {
 		
 		if( !IsAdmin() && '5' == $groupID ) {
 			$strSQL = "select DISTINCT RSAName from customerallocation order by RSAName";
-		} elseif( !IsAdmin() && ( '6' == $groupID || '7' == $groupID ) ) {
+		} elseif( !IsAdmin() && '6' == $groupID ) {
+			$strSQL = "select DISTINCT RSAName from customerallocation where RSAName = '" . $userName . "' OR Supervisor = '" . $supervisorID . "' OR Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' ) order by RSAName";
+		} elseif( !IsAdmin() && '7' == $groupID ) {
 			$strSQL = "select DISTINCT RSAName from customerallocation where RSAName = '" . $userName . "' OR Supervisor = '" . $supervisorID . "' order by RSAName";
 		} elseif( !IsAdmin() && '1' == $groupID ) {
 			$strSQL = "select DISTINCT RSAName from customerallocation where RSAName = '" . $userName . "' order by RSAName";
@@ -170,7 +172,9 @@ class eventclass_customerallocation extends eventsBase {
 			$supervisorID = $data['SupervisorID'];
 		if( !IsAdmin() && '5' == $groupID ) {
 			$strSQL = "select DISTINCT CustomerName from customerallocation order by CustomerName";
-		} elseif( !IsAdmin() && ( '6' == $groupID || '7' == $groupID ) ) {
+		} elseif( !IsAdmin() && '6' == $groupID ) {
+			$strSQL = "select DISTINCT CustomerName from customerallocation where RSAName = '" . $userName . "' OR Supervisor = '" . $supervisorID . "' OR Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' ) order by CustomerName";
+		} elseif( !IsAdmin() && '7' == $groupID ) {
 			$strSQL = "select DISTINCT CustomerName from customerallocation where RSAName = '" . $userName . "' OR Supervisor = '" . $supervisorID . "' order by CustomerName";
 		} elseif( !IsAdmin() && '1' == $groupID ) {
 			$strSQL = "select DISTINCT CustomerName from customerallocation where RSAName = '" . $userName . "' order by CustomerName";
@@ -218,7 +222,9 @@ class eventclass_customerallocation extends eventsBase {
 
 		if( !IsAdmin() && '5' == $groupID) {
 			$strSQL = "select DISTINCT td.SupervisorID, td.FullName from customerallocation ca LEFT JOIN tbl_director td ON( ca.Supervisor = td.SupervisorID ) order by Supervisor";
-		} elseif( !IsAdmin() && ( '6' == $groupID || '7' == $groupID ) ) {
+		} elseif( !IsAdmin() && '6' == $groupID ) {
+			$strSQL = "select DISTINCT td.SupervisorID, td.FullName from customerallocation ca LEFT JOIN tbl_director td ON( ca.Supervisor = td.SupervisorID ) where ca.RSAName = '" . $userName . "' OR Supervisor = '" . $supervisorID . "' OR Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' ) order by Supervisor";
+		} elseif( !IsAdmin() && '7' == $groupID ) {
 			$strSQL = "select DISTINCT td.SupervisorID, td.FullName from customerallocation ca LEFT JOIN tbl_director td ON( ca.Supervisor = td.SupervisorID ) where ca.RSAName = '" . $userName . "' OR Supervisor = '" . $supervisorID . "' order by Supervisor";
 		} elseif( !IsAdmin() && '1' == $groupID) {
 			$strSQL = "select DISTINCT td.SupervisorID, td.FullName from customerallocation ca LEFT JOIN tbl_director td ON( ca.Supervisor = td.SupervisorID ) where ca.RSAName = '" . $userName . "' order by Supervisor";

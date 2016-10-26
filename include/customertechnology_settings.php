@@ -937,13 +937,13 @@ function createSqlQuery_customertechnology() {
 	$proto1 ["m_strTail"] = "";
 	$proto1 ["cipherer"] = null;
 	$proto2 = array ();
-	if( !IsAdmin() && ( '5' == $groupID || '7' == $groupID ) ) {
+	if( !IsAdmin() && ( '5' == $groupID || '6' == $groupID ) ) {
 		$proto2 ["m_sql"] = "";
 		$proto2 ["m_uniontype"] = "SQLL_UNKNOWN";
 		$obj = new SQLNonParsed ( array (
 				"m_sql" => ""
 		) );
-	} elseif( !IsAdmin() && '6' == $groupID ) {
+	} elseif( !IsAdmin() && '7' == $groupID ) {
 		global $conn;
 		$strSQL = "SELECT DISTINCT td.SupervisorID, td.FullName FROM customer_header ch JOIN tbl_director td ON( ch.Supervisor = td.SupervisorID ) WHERE td.FullName = '" . $userName . "'";
 		$rs = db_query($strSQL,$conn);

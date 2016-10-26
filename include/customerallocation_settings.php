@@ -3070,7 +3070,7 @@ $masterTablesData ["customerallocation"] [0] ["detailKeys"] [] = "RSAName";
 
 require_once (getabspath ( "classes/sql.php" ));
 function createSqlQuery_customerallocation() {
-	
+	global $conn;
 	if( false == is_null( $_SESSION['UserName'] ) ) {
 		$userName = $_SESSION['UserName'];
 	}
@@ -3085,7 +3085,7 @@ function createSqlQuery_customerallocation() {
 	$proto3 ["m_strFieldList"] = "ca.AutCustID,  ca.OracleID,  ca.CustomerName,  ca.RSAName,  ca.Location,  ca.Supervisor,  ca.StartDate,  ca.EndDate,  ca.Allocation,  ca.Override,  ca.`Size`,  ch.Contract_Start,  ch.SteadyState as SteadyStateDate,  ch.Contract_end as Contract_End,  ca.OnshoreSupportOnly,  ca.PlatformType,  ca.PlatformName,  ca.`Role`,  ca.TimeZone, ca.Project,  ca.Stage";
 	$proto3 ["m_strFrom"] = "FROM customerallocation ca LEFT JOIN customer_header ch ON(ca.OracleID = ch.OracIeID)";
 	$proto3 ["m_strWhere"] = "";
-	$proto3 ["m_strOrderBy"] = "ORDER BY CustomerName";
+	$proto3 ["m_strOrderBy"] = "ORDER BY ca.CustomerName";
 	$proto3 ["m_strTail"] = "";
 	$proto3 ["cipherer"] = null;
 	$proto4 = array ();
@@ -3095,8 +3095,19 @@ function createSqlQuery_customerallocation() {
 		$obj = new SQLNonParsed ( array (
 				"m_sql" => ""
 		) );
-	} elseif( !IsAdmin() && ( '6' == $groupID || '7' == $groupID ) ) {
-		global $conn;
+	} elseif( !IsAdmin() && '6' == $groupID ) {
+	
+		$strSQL = "SELECT DISTINCT td.SupervisorID, td.FullName FROM customerallocation ca JOIN tbl_director td ON( ca.Supervisor = td.SupervisorID ) WHERE td.FullName = '" . $userName . "'";
+		$rs = db_query($strSQL,$conn);
+		while ($data = db_fetch_array($rs))
+			$supervisorID = $data['SupervisorID'];
+		$proto4 ["m_sql"] = "RSAName = '". $userName ."' OR Supervisor = '" . $supervisorID . "' OR Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' )";
+		$proto4 ["m_uniontype"] = "SQLL_UNKNOWN";
+		$obj = new SQLNonParsed ( array (
+				"m_sql" => "RSAName = '". $userName ."' OR Supervisor = '" . $supervisorID . "' OR Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' )"
+		) );
+	} elseif( !IsAdmin() && '7' == $groupID ) {
+		
 		$strSQL = "SELECT DISTINCT td.SupervisorID, td.FullName FROM customerallocation ca JOIN tbl_director td ON( ca.Supervisor = td.SupervisorID ) WHERE td.FullName = '" . $userName . "'";
 		$rs = db_query($strSQL,$conn);
 		while ($data = db_fetch_array($rs))
