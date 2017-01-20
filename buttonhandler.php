@@ -49,7 +49,7 @@ function loadAllocationData($startDate, $endDate) {
 		$booIsAdmin = 1;
 	}
 	
-	$result = DBLookup("CALL Allocation_dashboard21('" . $startDate . "', '" . $endDate . "', " . $booIsAdmin . ", '" . $userName . "', @AllocDetails )");
+	$result = DBLookup("CALL Allocation_dashboard1121('" . $startDate . "', '" . $endDate . "', " . $booIsAdmin . ", '" . $userName . "', @AllocDetails )");
 	$query = "SELECT @AllocDetails;";
 	$result1 = mysqli_query($connectionObj, $query);
 	if( false == is_null( $result1 ) ) {
@@ -101,7 +101,7 @@ function buttonHandler_Show_Allocation3($params) {
 		$booIsAdmin = 1;
 	}
 
-	$result = DBLookup("CALL Allocation_dashboard21('" . $params["startDate"] . "', '" . $params["endDate"] . "', " . $booIsAdmin . ", '" . $userName . "', @AllocDetails )");
+	$result = DBLookup("CALL Allocation_dashboard1121('" . $params["startDate"] . "', '" . $params["endDate"] . "', " . $booIsAdmin . ", '" . $userName . "', @AllocDetails )");
 	$query = "SELECT @AllocDetails;";
 	$result1 = mysqli_query($connectionObj, $query);
 

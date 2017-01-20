@@ -1,191 +1,32 @@
-<?php 
-class eventclass_customertechnology  extends eventsBase
-{ 
-	function eventclass_customertechnology()
-	{
-	// fill list of events
-		$this->events["BeforeShowList"]=true;
-
-
-
-
-//	onscreen events
-
+<?php
+class eventclass_customertechnology extends eventsBase {
+	function eventclass_customertechnology() {
+		// fill list of events
+		$this->events ["BeforeAdd"] = true;
+		
+		// onscreen events
 	}
-
-//	handlers
-
+	
+	// handlers
+	
+	// Before record Added
+	function BeforeAdd(&$values, &$message, $inline, &$pageObject) {
 		
+		// Place event code here.
+		$strCuatomerName = $values['Name'];
 		
+		global $conn;
+		$sql = 'select OracIeID from customer_header where `Name` = "' . $strCuatomerName . '"';
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-				// Before display
-function BeforeShowList(&$xt, &$templatefile, &$pageObject)
-{
-
-		
-// Place event code here.
-// Use "Add Action" button to add code snippets.
-;		
-} // function BeforeShowList
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-								
-		
-		
+		$rs = db_query($sql,$conn);
+		while ($data = db_fetch_array($rs))
+			$strOracleID = $data['OracIeID'];		
+			$values['CategoryID'] = $strOracleID;
 			
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-								
-		
-		
-			
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-								
-		
-		
-			
-		
-		
-		
-		
-//	onscreen events
-
-} 
+		// Use "Add Action" button to add code snippets.
+		;
+	} // function BeforeShowList
+		  
+	// onscreen events
+}
 ?>

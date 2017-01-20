@@ -11,6 +11,17 @@ Runner.pages.PageSettings.addPageEvent(	"customer_header", Runner.pages.constant
 			$("#"+checkedId).parent('td').prev().children('a').click();
 		}
 	} );
+	$("#view_customer").on( 'click', function(){
+		var checked = document.querySelectorAll('[name="selection[]"]:checked');
+		if( checked.length == 0 ) {
+			alert("Select atleast one record to view.");
+		} else if( checked.length > 1 ) {
+			alert("Single record can be viewed");
+		} else {
+			var checkedId = checked[0].id;
+			$("#"+checkedId).parent('td').prev().children('.view-customer').click();
+		}
+	} );
 	$('a[id^="master_customerallocation"]').click(function(){ $(this).removeAttr('href') });
 	$("td.rnr-field-number").click(function(){ $(this).find('a').removeAttr("href");});
 	;

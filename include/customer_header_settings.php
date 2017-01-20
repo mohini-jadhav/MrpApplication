@@ -145,7 +145,7 @@ $tdatacustomer_header [".showAddInPopup"] = true;
 
 $tdatacustomer_header [".showEditInPopup"] = true;
 
-$tdatacustomer_header [".showViewInPopup"] = false;
+$tdatacustomer_header [".showViewInPopup"] = true;
 
 // page's base css files names
 $popupPagesLayoutNames = array ();
@@ -155,6 +155,7 @@ $popupPagesLayoutNames ["add"] = "add2";
 
 ;
 $popupPagesLayoutNames ["edit"] = "edit2";
+$popupPagesLayoutNames ["view"] = "view2";
 $tdatacustomer_header [".popupPagesLayoutNames"] = $popupPagesLayoutNames;
 
 $tdatacustomer_header [".fieldsForRegister"] = array ();
@@ -176,7 +177,7 @@ $tdatacustomer_header [".closePopupAfterAdd"] = 1;
 $tdatacustomer_header [".afterAddActionDetTable"] = "customertechnology";
 
 $tdatacustomer_header [".list"] = true;
-
+$tdatacustomer_header [".view"] = true;
 $tdatacustomer_header [".import"] = true;
 
 $tdatacustomer_header [".exportTo"] = true;
@@ -378,6 +379,34 @@ $tdatacustomer_header [".listFields"] [] = "OTHER_MRR";
 $tdatacustomer_header [".hideMobileList"] = array ();
 
 $tdatacustomer_header [".viewFields"] = array ();
+$tdatacustomer_header [".viewFields"] = array ();
+$tdatacustomer_header [".viewFields"] [] = "OracIeID";
+$tdatacustomer_header [".viewFields"] [] = "Name";
+$tdatacustomer_header [".viewFields"] [] = "PrimaryTimeZone";
+$tdatacustomer_header [".viewFields"] [] = "Size";
+$tdatacustomer_header [".viewFields"] [] = "Onshore Support";
+$tdatacustomer_header [".viewFields"] [] = "Stage";
+$tdatacustomer_header [".viewFields"] [] = "Overall_Temp";
+$tdatacustomer_header [".viewFields"] [] = "Engagement_status";
+$tdatacustomer_header [".viewFields"] [] = "Contract_Start";
+$tdatacustomer_header [".viewFields"] [] = "SteadyState";
+$tdatacustomer_header [".viewFields"] [] = "Contract_end";
+$tdatacustomer_header [".viewFields"] [] = "Recovery_Center";
+$tdatacustomer_header [".viewFields"] [] = "Total_MRR";
+$tdatacustomer_header [".viewFields"] [] = "MRP_MRR";
+$tdatacustomer_header [".viewFields"] [] = "ARS_MRR";
+$tdatacustomer_header [".viewFields"] [] = "RS_MRR";
+$tdatacustomer_header [".viewFields"] [] = "MS_MRR";
+$tdatacustomer_header [".viewFields"] [] = "CS_MRR";
+$tdatacustomer_header [".viewFields"] [] = "OTHER_MRR";
+$tdatacustomer_header [".viewFields"] [] = "Comments";
+$tdatacustomer_header [".viewFields"] [] = "Address";
+$tdatacustomer_header [".viewFields"] [] = "TransStartDate";
+$tdatacustomer_header [".viewFields"] [] = "TransEndDate";
+$tdatacustomer_header [".viewFields"] [] = "RSAName";
+$tdatacustomer_header [".viewFields"] [] = "Supervisor";
+$tdatacustomer_header [".viewFields"] [] = "TAM";
+$tdatacustomer_header [".viewFields"] [] = "SME";
 
 $tdatacustomer_header [".addFields"] = array ();
 $tdatacustomer_header [".addFields"] [] = "OracIeID";
@@ -570,10 +599,11 @@ $fdata ["strName"] = "OracIeID";
 $fdata ["GoodName"] = "OracIeID";
 $fdata ["ownerTable"] = "customer_header";
 $fdata ["Label"] = GetFieldLabel ( "customer_header", "OracIeID" );
-$fdata ["FieldType"] = 3;
+$fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -660,7 +690,7 @@ $edata ["validateAs"] ["basicValidate"] [] = getJsValidatorName ( "Number" );
 $edata ["validateAs"] ["basicValidate"] [] = "IsRequired";
 $edata ["validateAs"] ["basicValidate"] [] = "DenyDuplicated";
 $edata ["validateAs"] ["customMessages"] ["DenyDuplicated"] = array (
-		"message" => "Value %value% Oracle ID already exists",
+		"message" => "Value %value% Oracle ID already exists. Please add suffix A,B,C,D,etc infront of it. If it is a new customer.",
 		"messageType" => "Text" 
 );
 // End validation
@@ -700,6 +730,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -821,6 +852,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1094,6 +1126,7 @@ $fdata ["FieldType"] = 7;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1197,6 +1230,7 @@ $fdata ["FieldType"] = 7;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1299,6 +1333,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1456,6 +1491,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1559,6 +1595,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1776,7 +1813,7 @@ $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1892,6 +1929,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -1991,6 +2029,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -2086,6 +2125,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -2180,6 +2220,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -2976,6 +3017,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 
 $fdata ["bPrinterPage"] = true;
 
@@ -3108,7 +3150,7 @@ $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -3351,7 +3393,7 @@ $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -3535,7 +3577,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bPrinterPage"] = true;
 
 $fdata ["strField"] = "Address";
@@ -3605,7 +3647,7 @@ $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -3684,7 +3726,7 @@ $fdata ["FieldType"] = 200;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -3808,6 +3850,7 @@ $fdata ["FieldType"] = 16;
 $fdata ["bListPage"] = true;
 $fdata ["bAddPage"] = true;
 $fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -3887,7 +3930,7 @@ $fdata ["FieldType"] = 7;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -3969,7 +4012,7 @@ $fdata ["FieldType"] = 7;
 $fdata ["bAddPage"] = true;
 
 $fdata ["bEditPage"] = true;
-
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bPrinterPage"] = true;
@@ -4153,8 +4196,9 @@ $fdata ["GoodName"] = "Supervisor";
 $fdata ["ownerTable"] = "customer_header";
 $fdata ["Label"] = GetFieldLabel ( "customer_header", "Supervisor" );
 $fdata ["FieldType"] = 200;
-
-
+$fdata ["bAddPage"] = true;
+$fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bExportPage"] = true;
@@ -4250,7 +4294,9 @@ $fdata ["ownerTable"] = "customer_header";
 $fdata ["Label"] = GetFieldLabel ( "customer_header", "TAM" );
 $fdata ["FieldType"] = 200;
 
-
+$fdata ["bAddPage"] = true;
+$fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 
 $fdata ["bExportPage"] = true;
@@ -4347,7 +4393,9 @@ $fdata ["GoodName"] = "SME";
 $fdata ["ownerTable"] = "customer_header";
 $fdata ["Label"] = GetFieldLabel ( "customer_header", "SME" );
 $fdata ["FieldType"] = 200;
-
+$fdata ["bAddPage"] = true;
+$fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 
 $fdata ["bAdvancedSearch"] = true;
 
@@ -4438,7 +4486,9 @@ $fdata ["ownerTable"] = "customer_header";
 $fdata ["Label"] = GetFieldLabel ( "customer_header", "RSAName" );
 $fdata ["FieldType"] = 200;
 $fdata ["bAdvancedSearch"] = true;
-
+$fdata ["bAddPage"] = true;
+$fdata ["bEditPage"] = true;
+$fdata ["bViewPage"] = true;
 $fdata ["bExportPage"] = true;
 
 $fdata ["strField"] = "RSAName";
@@ -4613,7 +4663,7 @@ function createSqlQuery_customer_header() {
 	$proto2 ["m_strTail"] = "";
 	$proto2 ["cipherer"] = null;
 	$proto3 = array ();
-	if( !IsAdmin() && '5' == $groupID ) {
+	/* if( !IsAdmin() && '5' == $groupID ) {
 		$proto3 ["m_sql"] = "customer_header.Engagement_status <> 'Terminated'";
 		$proto3 ["m_uniontype"] = "SQLL_AND";
 		$obj = new SQLNonParsed ( array (
@@ -4624,7 +4674,7 @@ function createSqlQuery_customer_header() {
 		$rs = db_query($strSQL,$conn);
 		while ($data = db_fetch_array($rs))
 		$supervisorID = $data['SupervisorID'];
-		$proto3 ["m_sql"] = "customer_header.Engagement_status <> 'Terminated' AND customer_header.Supervisor = '" . $supervisorID ."' OR customer_header.Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' ) " ;
+		$proto3 ["m_sql"] = "customer_header.Engagement_status <> 'Terminated'AND customer_header.Supervisor = '" . $supervisorID ."' OR customer_header.Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' ) " ;
 		$proto3 ["m_uniontype"] = "SQLL_AND";
 		$obj = new SQLNonParsed ( array (
 				"m_sql" => "customer_header.Engagement_status <> 'Terminated' AND customer_header.Supervisor = '" . $supervisorID . "' OR customer_header.Supervisor IN ( SELECT EmployeeID FROM employee_header eh where eh.SupervisorID = '" . $supervisorID . "' )"
@@ -4639,7 +4689,8 @@ function createSqlQuery_customer_header() {
 		$obj = new SQLNonParsed ( array (
 				"m_sql" => "customer_header.Engagement_status <> 'Terminated' AND customer_header.Supervisor = '" . $supervisorID . "'"
 		) );
-	} elseif( !IsAdmin() && '1' == $groupID ) {
+	} else */
+	if( !IsAdmin() && '1' == $groupID ) {
 		$proto3 ["m_sql"] = "customer_header.Engagement_status <> 'Terminated' AND customerallocation.RSAName = '" . $userName . "'";
 		$proto3 ["m_uniontype"] = "SQLL_AND";
 		$obj = new SQLNonParsed ( array (

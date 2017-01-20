@@ -273,23 +273,54 @@
                                     </td>
 </tr>
 {END Comments_fieldblock}
-	{BEGIN Address_fieldblock}<tr class="{$fielddispclass_Address}" data-fieldname="Address">
-	<TD class="rnr-label" style="width: 133px;" rowspan="1" colspan="1">
-                                    </td>
-	<TD class="rnr-control style3" style="width: 215px;" rowspan="1" colspan="1">
-                                    </TD>
-                                    <TD class="rnr-control style3 runner-cc" style="width: 96px;" rowspan="1" colspan="1">
-                                    </TD>
-                                    <TD class="rnr-control style3 runner-cc" style="width: 212px;" rowspan="1" colspan="1">
-                                    </TD>
-                                    <TD class="rnr-control style3 runner-cc" style="width: 123px;" rowspan="1" colspan="1">
-                                    </TD>
-                                    <TD class="rnr-control style3 runner-cc" style="width: 177px;" rowspan="1" colspan="1">
-                                    </td>
-</tr>
-{END Address_fieldblock}
-	</TBODY>
-                            </table></div>
+	{BEGIN Address_fieldblock}<TR class="{$fielddispclass_Address}" style="height: 40px;">
+    <TD class="rnr-label" style="width: 118px;" rowspan="1" colspan="1"></TD>
+    <TD class="rnr-control style3" style="width: 212px;" rowspan="1" 
+    colspan="1"></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 96px;" rowspan="1" 
+    colspan="1"></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 212px;" rowspan="1" 
+    colspan="1"></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 104px;" rowspan="1" 
+    colspan="1"></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 175px;" rowspan="1" 
+    colspan="1"></TD></TR>
+  <TR class="{$fielddispclass_Address}" style="height: 33px;">
+    <TD class="rnr-label" style="width: 118px;" rowspan="1" colspan="1">
+      {$label customer_header Supervisor}</TD>
+    <TD class="rnr-control style3" style="width: 212px;" rowspan="1" 
+colspan="1">
+      {$Supervisor_editcontrol}</TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 96px;" rowspan="1" 
+    colspan="1"><STRONG></STRONG><STRONG> 
+      {$label customer_header RSAName}</STRONG></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 212px;" rowspan="1" 
+    colspan="1">
+      {$RSAName_editcontrol}</TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 104px;" rowspan="1" 
+    colspan="1"></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 175px;" rowspan="1" 
+    colspan="1"></TD></TR>
+  <TR class="{$fielddispclass_Address}" data-fieldname="Address">
+    <TD class="rnr-label" style="width: 118px;" rowspan="1" colspan="1">{BEGIN Address_label}<EM></EM> 
+      {$label customer_header TAM}{END Address_label}</TD>
+    <TD class="rnr-control style3" style="width: 212px;" rowspan="1" 
+colspan="1">
+      {$TAM_editcontrol}</TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 96px;" rowspan="1" 
+    colspan="1"><STRONG>
+      {$label customer_header SME}</STRONG></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 212px;" rowspan="1" 
+    colspan="1">
+      {$SME_editcontrol}</TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 104px;" rowspan="1" 
+    colspan="1"></TD>
+    <TD class="rnr-control style3 runner-cc" style="width: 175px;" rowspan="1" 
+    colspan="1"></TD></TR>{END Address_fieldblock}</TBODY>
+  <TBODY>
+  {BEGIN RSAName_fieldblock}<TR class="{$fielddispclass_RSAName}" data-fieldname="RSAName"></TR>
+  {END RSAName_fieldblock}{BEGIN Supervisor_fieldblock}<TR class="{$fielddispclass_Supervisor}" data-fieldname="Supervisor"></TR>
+  {END Supervisor_fieldblock}{BEGIN TAM_fieldblock}<TR class="{$fielddispclass_TAM}" data-fieldname="TAM"></TR>{END TAM_fieldblock}</TBODY></TABLE></DIV>
 
 
 {BEGIN addbuttons}<div  class="rnr-brickcontents style2 rnr-b-addbuttons {$brickclass_addbuttons}">{BEGIN save_button}<A class="rnr-button main" id="saveButton{$id}" href="#">Save</a>

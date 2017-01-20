@@ -105,7 +105,7 @@ Runner.pages.PageSettings
 							}
 	
 							for (var i = 0; i < columns.length; i++) {
-								if (columns[i] == "Resource" || columns[i] == "Role" || columns[i] == "Manager" ) {
+								if (columns[i] == "Resource" || columns[i] == "Manager" ) {
 	
 										if( columns[i] == "Resource" ) {
 											colM.push( { 
@@ -138,7 +138,7 @@ Runner.pages.PageSettings
 										}
 										
 									
-								} else if(columns[i] != "Resource" || columns[i] != "Role" || columns[i] != "Manager" ) {
+								} else if(columns[i] != "Resource" ||  columns[i] != "Manager" ) {
 		
 									colM.push({
 										title : columns[i],
@@ -182,7 +182,7 @@ Runner.pages.PageSettings
 					                 filterModel: { on: true, mode: "OR", header: true },
 					                 resizable: true,
 					                 columnBorders: true,
-					                 freezeCols: 3,
+					                 freezeCols: 2,
 					                 scrollModel : {
 											autoFit : true,
 											theme : true,

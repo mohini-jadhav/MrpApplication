@@ -15,8 +15,8 @@ Runner.pages.PageSettings.addPageEvent("customertechnology",
 		Runner.pages.constants.PAGE_LIST, "afterPageReady", function(pageObj,
 				proxy, pageid, inlineRow, inlineObject) {
 
-	$(".rnr-b-recordcontrols_new").hide();
-	$("#edit_selected"+pageid).hide();
+	//$(".rnr-b-recordcontrols_new").hide();
+	//$("#edit_selected"+pageid).hide();
 	
 	$("#view_custtech").on( 'click', function(){
 		var checked = document.querySelectorAll('[name="selection[]"]:checked');

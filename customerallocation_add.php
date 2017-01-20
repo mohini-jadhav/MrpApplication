@@ -153,4 +153,5 @@ $pageObject = new AddPage( $params );
 $pageObject->init();
 
 $pageObject->process();
+
 ?>

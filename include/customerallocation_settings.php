@@ -129,7 +129,7 @@ $tdatacustomerallocation [".list"] = true;
 $tdatacustomerallocation [".view"] = true;
 $tdatacustomerallocation [".import"] = true;
 $tdatacustomerallocation [".exportTo"] = true;
-
+$tdatacustomerallocation [".delete"] = true;
 $tdatacustomerallocation [".printFriendly"] = true;
 
 $tdatacustomerallocation [".showSimpleSearchOptions"] = false;
@@ -556,9 +556,9 @@ $tdatacustomerallocation ["OracleID"] = $fdata;
 // Custom field settings
 $fdata = array ();
 $fdata ["Index"] = 3;
-$fdata ["strName"] = "CustomerName";
-$fdata ["GoodName"] = "CustomerName";
-$fdata ["ownerTable"] = "customerallocation";
+$fdata ["strName"] = "Name";
+$fdata ["GoodName"] = "Name";
+$fdata ["ownerTable"] = "customer_header";
 $fdata ["Label"] = GetFieldLabel ( "customerallocation", "CustomerName" );
 $fdata ["FieldType"] = 200;
 $fdata ["bListPage"] = true;
@@ -567,7 +567,7 @@ $fdata ["bEditPage"] = true;
 $fdata ["bViewPage"] = true;
 $fdata ["bAdvancedSearch"] = true;
 $fdata ["bExportPage"] = true;
-$fdata ["strField"] = "CustomerName";
+$fdata ["strField"] = "Name";
 $fdata ["isSQLExpression"] = true;
 $fdata ["FullName"] = "CustomerName";
 $fdata ["FieldPermissions"] = true;
@@ -670,7 +670,7 @@ $edata ["LookupType"] = 2;
 $edata ["LookupTable"] = "customer_header";
 $edata ["autoCompleteFieldsOnEdit"] = 0;
 $edata ["autoCompleteFields"] = array ();
-$edata ["autoCompleteFields"] [] = array (
+/* $edata ["autoCompleteFields"] [] = array (
 		'masterF' => "OracleID",
 		'lookupF' => "OracIeID" 
 );
@@ -702,6 +702,7 @@ $edata ["autoCompleteFields"] [] = array (
 		'masterF' => "TimeZone",
 		'lookupF' => "PrimaryTimeZone" 
 );
+ */
 $edata ["LCType"] = 0;
 
 $edata ["LinkField"] = "Name";
@@ -1908,7 +1909,7 @@ $edata ["DisplayField"] = "CategoryName";
 $edata ["LookupOrderBy"] = "";
 // dependent dropdowns
 $edata ["DependentLookups"] = array ();
-$edata ["DependentLookups"] [] = "Stage";
+//$edata ["DependentLookups"] [] = "Stage";
 
 $edata ["SelectSize"] = 1;
 
@@ -3082,8 +3083,8 @@ function createSqlQuery_customerallocation() {
 
 	$proto3 = array ();
 	$proto3 ["m_strHead"] = "SELECT ";
-	$proto3 ["m_strFieldList"] = "ca.AutCustID,  ca.OracleID,  ca.CustomerName,  ca.RSAName,  ca.Location,  ca.Supervisor,  ca.StartDate,  ca.EndDate,  ca.Allocation,  ca.Override,  ca.`Size`,  ch.Contract_Start,  ch.SteadyState as SteadyStateDate,  ch.Contract_end as Contract_End,  ca.OnshoreSupportOnly,  ca.PlatformType,  ca.PlatformName,  ca.`Role`,  ca.TimeZone, ca.Project,  ca.Stage";
-	$proto3 ["m_strFrom"] = "FROM customerallocation ca LEFT JOIN customer_header ch ON(ca.OracleID = ch.OracIeID)";
+	$proto3 ["m_strFieldList"] = "ca.AutCustID,  ca.OracleID,  ch,Name AS CustomerName,  ca.RSAName,  ca.Location,  ca.Supervisor,  ca.StartDate,  ca.EndDate,  ca.Allocation,  ca.Override,  ca.`Size`,  ch.Contract_Start,  ch.SteadyState as SteadyStateDate,  ch.Contract_end as Contract_End,  ca.OnshoreSupportOnly,  ca.PlatformType,  ca.PlatformName,  ca.`Role`,  ca.TimeZone, ca.Project,  ca.Stage";
+	$proto3 ["m_strFrom"] = "FROM customerallocation ca, customer_header ch";
 	$proto3 ["m_strWhere"] = "";
 	$proto3 ["m_strOrderBy"] = "ORDER BY ca.CustomerName";
 	$proto3 ["m_strTail"] = "";

@@ -230,11 +230,11 @@ class ConnectionManager {
 		$data = array ();
 		$data ["dbType"] = 0;
 		$data ["connId"] = "Tables";
-		$data ["connName"] = "mydb at localhost";
+		$data ["connName"] = "mydb1 at localhost";
 		$data ["connStringType"] = "mysql";
-		$data ["connectionString"] = "mysql;localhost;system;system;;mydb;;1"; // currently unused
+		$data ["connectionString"] = "mysql;localhost;system;system;;mydb1;;1"; // currently unused
 		
-		$this->_connectionsIdByName ["mydb at localhost"] = "Tables";
+		$this->_connectionsIdByName ["mydb1 at localhost"] = "Tables";
 		
 		$data ["connInfo"] = array ();
 		$data ["ODBCUID"] = "system";
@@ -249,10 +249,10 @@ class ConnectionManager {
 		$data ["connInfo"] [1] = "system";
 		$data ["connInfo"] [2] = "system";
 		$data ["connInfo"] [3] = "";
-		$data ["connInfo"] [4] = "mydb";
+		$data ["connInfo"] [4] = "mydb1";
 		$data ["connInfo"] [5] = ""; // currently unused
 		$data ["connInfo"] [6] = "1"; // currently unused
-		$data ["ODBCString"] = "DRIVER={MySQL ODBC 5.3 Unicode Driver};Server=localhost;Uid=system;Pwd=system;Database=mydb;OPTION=3";
+		$data ["ODBCString"] = "DRIVER={MySQL ODBC 5.3 Unicode Driver};Server=localhost;Uid=system;Pwd=system;Database=mydb1;OPTION=3";
 		// $data["ODBCString"] = "DRIVER={MySQL ODBC 3.51 Driver};Server=localhost;Uid=system;Pwd=system;Database=mydb;OPTION=3";
 		$connectionsData ["Tables"] = $data;
 		$this->_connectionsData = $connectionsData;

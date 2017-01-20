@@ -229,7 +229,7 @@ $tdatacustomertechnology [".masterListFields"] [] = "Comment";
 $tdatacustomertechnology [".masterListFields"] [] = "CategoryID";
 
 $tdatacustomertechnology [".inlineAddFields"] = array ();
-//$tdatacustomertechnology [".inlineAddFields"] [] = "Name";
+$tdatacustomertechnology [".inlineAddFields"] [] = "Name";
 $tdatacustomertechnology [".inlineAddFields"] [] = "Category";
 $tdatacustomertechnology [".inlineAddFields"] [] = "Platform";
 $tdatacustomertechnology [".inlineAddFields"] [] = "Quantity";
@@ -654,9 +654,12 @@ $fdata ["strName"] = "CategoryID";
 $fdata ["GoodName"] = "CategoryID";
 $fdata ["ownerTable"] = "customertechnology";
 $fdata ["Label"] = GetFieldLabel ( "customertechnology", "CategoryID" );
-$fdata ["FieldType"] = 3;
+$fdata ["FieldType"] = 200;
 
 $fdata ["strField"] = "CategoryID";
+$fdata ["bInlineAdd"] = true;
+
+$fdata ["bInlineEdit"] = true;
 
 $fdata ["isSQLExpression"] = true;
 $fdata ["FullName"] = "customertechnology.CategoryID";

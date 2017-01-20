@@ -223,6 +223,8 @@ color="#000000">Filter by Resource Name:{$event customerallocation_snippet3}&nbs
 
 {BEGIN record_controls_block}<div  class="style1 rnr-br rnr-b-recordcontrol {$brickclass_recordcontrol}">	
 	<A id="view_allocation" class="rnr-button" href="#"> View </A>
+	{BEGIN deleteselected_link}<a href="#" class="rnr-button" {$deleteselectedlink_attrs} {$deleteselectedlink_span}>Delete</a>
+	{END deleteselected_link}
  {BEGIN exportselected_link}
  <a href="#" class="rnr-button" {$exportselectedlink_attrs} {$exportselectedlink_span}>
      Export
